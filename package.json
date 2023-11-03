@@ -1,0 +1,29 @@
+{
+  "name": "exchange",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "nodemon dist/server.js",
+    "tsc": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@ewsjs/xhr": "^2.0.1",
+    "agentkeepalive": "^4.5.0",
+    "dotenv": "^16.3.1",
+    "ews-javascript-api": "^0.13.0",
+    "fast-xml-parser": "^4.3.2",
+    "http-proxy": "^1.18.1",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/http-proxy": "^1.17.13",
+    "@types/node": "^20.8.10",
+    "nodemon": "^3.0.1",
+    "typescript": "^5.2.2"
+  }
+}
