@@ -7,7 +7,7 @@ const fs = require('fs')
 dotenv.config()
 
 const SSL_KEY = process.env.SSL_KEY || "cer/server.key"
-const SSL_CERT = process.env.SSL_CERT || "cer/server.crt"
+const SSL_CRT = process.env.SSL_CRT || "cer/server.crt"
 const MAIL_DOMAIN = process.env.MAIL_DOMAIN
 const PROXY_PORT = process.env.PROXY_PORT || 443
 if (!MAIL_DOMAIN) throw Error("MAIL_URL is required in environment")
