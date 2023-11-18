@@ -41,7 +41,7 @@ proxy.on('proxyRes', function (proxyRes) {
 
 const options = {
     key: fs.readFileSync(SSL_KEY),
-    cert: fs.readFileSync(SSL_CERT),
+    cert: fs.readFileSync(SSL_CRT),
 };
 
 const app = https.createServer(options, (req, res) => {
