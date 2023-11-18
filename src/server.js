@@ -65,6 +65,7 @@ const app = https.createServer(options, (req, res) => {
                 res.writeHead(403, { 'Content-Type': 'text/plain' })
                 res.end('Access Forbidden')
             }
+            console.log(body)
         })
     }
     req.on("end", () => {
