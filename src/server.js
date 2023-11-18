@@ -1,12 +1,15 @@
 const httpProxy = require("http-proxy")
 const { HttpsAgent } = require("agentkeepalive-ntlm")
-const http = require("http")
+const https = require("http")
 const dotenv = require("dotenv")
+const fs = require('fs')
 
 dotenv.config()
 
+const SSL_KEY = process.env.SSL_KEY || "cer/server.key"
+const SSL_CERT = process.env.SSL_CERT || "cer/server.crt"
 const MAIL_DOMAIN = process.env.MAIL_DOMAIN
-const PROXY_PORT = process.env.PROXY_PORT
+const PROXY_PORT = process.env.PROXY_PORT || 3000
 if (!MAIL_DOMAIN) throw Error("MAIL_URL is required in environment")
 if (!PROXY_PORT) throw Error("PROXY_PORT is required in environment")
 
@@ -36,7 +39,12 @@ proxy.on('proxyRes', function (proxyRes) {
     }
 });
 
-const app = http.createServer(function (req, res) {
+const options = {
+    key: fs.readFileSync(SSL_KEY),
+    cert: fs.readFileSync(SSL_CERT),
+};
+
+const app = https.createServer(options, (req, res) => {
     if (req.method === "POST") {
         let body = ""
 
@@ -61,7 +69,7 @@ const app = http.createServer(function (req, res) {
     }
     req.on("end", () => {
         console.log("==============Request==================")
-        console.log(req.headers) 
+        console.log(req.headers)
         console.log("==============Response==================", res.statusCode)
     })
     proxy.web(req, res)
