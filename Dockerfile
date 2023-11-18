@@ -6,6 +6,6 @@ COPY . .
 
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 443
 
 CMD [ "node", "src/server.js"]
