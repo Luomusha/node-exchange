@@ -36,8 +36,25 @@
     - 配置环境变量，USERNAME和PASSWORD可以不用配置。
     - 运行`npm start`
 
-2. 在飞书的Exchange填入服务的地址。如果部署在proxy.xxx.com.cn域名上、端口是3000的话就写
+2. 在飞书的Exchange填入服务的地址。如果部署在proxy.domain.com.cn域名上、端口是3000的话就写
 
 ```
 http://proxy.domain.com.cn:3000/EWS/Exchange.asmx
+```
+
+## Docker运行
+
+### 构建镜像
+```
+docker build . -t proxy
+```
+
+### 运行镜像
+
+```
+docker run --name exchange-proxy \
+-p 3000:3000 \
+-e MAIL_DOMAIN=mail.dhc.com.cn \
+-e PROXY_PORT=3000 \
+-d proxy
 ```
