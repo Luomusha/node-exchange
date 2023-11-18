@@ -77,5 +77,7 @@ const app = https.createServer(options, (req, res) => {
 })
 
 app.listen(PROXY_PORT, () => {
-    console.log("server is listening on", PROXY_PORT)
+    console.log("Listening on", PROXY_PORT)
+    console.log("SSL_KEY", SSL_KEY)
+    console.log("SSL_CRT", SSL_CRT)
 })
