@@ -45,21 +45,21 @@ const options = {
 };
 
 const app = https.createServer(options, (req, res) => {
+    // // 如果是ews以外的服务，拒绝。
+    if (req.url?.toLocaleLowerCase() !== "/ews/exchange.asmx") {
+        console.log("reject!!!!!!!!")
+        res.writeHead(403, { 'Content-Type': 'text/plain' })
+        res.end('Access Forbidden')
+    }
+
     if (req.method === "POST") {
         let body = ""
-
         req.on("data", chunk => {
             body += chunk.toString()
         })
         req.on("end", () => {
-            // // 如果是ews以外的服务，拒绝。
-            if (req.url?.toLocaleLowerCase() !== "/ews/exchange.asmx") {
-                console.log("reject!!!!!!!!")
-                res.writeHead(403, { 'Content-Type': 'text/plain' })
-                res.end('Access Forbidden')
-            }
             // 如果是邮件等敏感信息，拒绝
-            const danger = body.includes("inbox") || body.includes("sentitems") || body.includes("drafts") || body.includes("deleteditems") || body.includes("archinve")
+            const danger = body.includes("inbox") || body.includes("sentitems") || body.includes("drafts") || body.includes("deleteditems") || body.includes("archive")
             if (danger) {
                 console.log("reject!!!!!!!!")
                 res.writeHead(403, { 'Content-Type': 'text/plain' })
