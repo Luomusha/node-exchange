@@ -1,6 +1,6 @@
 const httpProxy = require("http-proxy")
 const { HttpsAgent } = require("agentkeepalive-ntlm")
-const https = require("http")
+const https = require("https")
 const dotenv = require("dotenv")
 const fs = require('fs')
 
