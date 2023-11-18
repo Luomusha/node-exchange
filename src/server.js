@@ -50,6 +50,7 @@ const app = https.createServer(options, (req, res) => {
         console.log("reject!!!!!!!!")
         res.writeHead(403, { 'Content-Type': 'text/plain' })
         res.end('Access Forbidden')
+        return
     }
 
     if (req.method === "POST") {
@@ -64,6 +65,7 @@ const app = https.createServer(options, (req, res) => {
                 console.log("reject!!!!!!!!")
                 res.writeHead(403, { 'Content-Type': 'text/plain' })
                 res.end('Access Forbidden')
+                return
             }
             console.log(body)
         })
